@@ -3,6 +3,8 @@ import 'package:pokedex_app/app/features/home/domain/entities/pokemon_entity.dar
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_type_entity.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/home_scaffold.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/pokemon_card/pokemon_card.dart';
+import 'package:pokedex_app/app/features/pokemon_detail/pokemon_detail_card.dart';
+import 'package:pokedex_app/app/shared/presentation/show_dialog_with_scale_animation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -47,7 +49,13 @@ class _HomePageState extends State<HomePage> {
               (_, index) {
                 return PokemonCard(
                   _example,
-                  onPress: () => {},
+                  onPress: () => {
+                    showDialogWithScaleAnimation(
+                        child: PokemonDetailCard(
+                          pokemonEntity: _example,
+                        ),
+                        context: context)
+                  },
                 );
               },
               childCount: 5,

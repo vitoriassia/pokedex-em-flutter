@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:pokedex_app/app/core/design/images/app_images.dart';
 import 'package:pokedex_app/app/core/design/res/app_colors.dart';
+import 'package:pokedex_app/app/core/design/res/dimen.dart';
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/pokemon_card/pokemon_image.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/pokemon_card/pokemon_type.dart';
 
 class PokemonCard extends StatelessWidget {
   static const double _pokeballFraction = 0.75;
-  static const double _pokemonFraction = 0.76;
 
   final PokemonEntity pokemon;
   final void Function()? onPress;
@@ -77,7 +77,7 @@ class PokemonCard extends StatelessWidget {
   }
 
   Widget _buildPokemon({required double height}) {
-    final pokemonSize = height * _pokemonFraction;
+    final pokemonSize = height * PokedexDimen.pokemonFraction;
 
     return Positioned(
       bottom: -2,

@@ -10,6 +10,7 @@ abstract class PokedexDimen {
   static const xxLarge = 40.0;
   static const xxxLarge = 48.0;
   static const double pokeballWidthFraction = 0.664;
+  static const double pokemonFraction = 0.76;
 }
 
 abstract class PokedexFontSize {
