@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/app/features/home/domain/entities/pokemon_ability_entity.dart';
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_type_entity.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/home_scaffold.dart';
@@ -19,12 +20,20 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  PokemonEntity get _example =>
-      const PokemonEntity(name: 'Bulbassauro', number: '#001', id: 1, types: [
-        PokemonTypeEntity(name: 'grass', id: 01),
-        PokemonTypeEntity(name: 'bug', id: 02),
-        PokemonTypeEntity(name: 'fire', id: 03),
-      ]);
+  PokemonEntity get _example => const PokemonEntity(
+        name: 'Bulbassauro',
+        number: '#001',
+        id: 1,
+        types: [
+          PokemonTypeEntity(name: 'grass', id: 01),
+          PokemonTypeEntity(name: 'bug', id: 02),
+          PokemonTypeEntity(name: 'fire', id: 03),
+        ],
+        abilities: [
+          PokemonAbilityEntity(name: 'grow', id: 12),
+          PokemonAbilityEntity(name: 'grow', id: 12),
+        ],
+      );
 
   @override
   Widget build(BuildContext context) {
