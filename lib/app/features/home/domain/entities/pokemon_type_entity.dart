@@ -4,14 +4,14 @@ import 'package:pokedex_app/app/core/design/res/app_colors.dart';
 
 class PokemonTypeEntity extends Equatable {
   final String name;
-  final int id;
+  final int? id;
   const PokemonTypeEntity({
     required this.name,
     required this.id,
   });
 
   @override
-  List<Object> get props => [name, id];
+  List<Object?> get props => [name, id];
 
   Color get color {
     switch (name) {

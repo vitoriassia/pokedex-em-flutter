@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:pokedex_app/app/core/services/api/api_config.dart';
 import 'package:pokedex_app/app/core/services/api/errors/exception_handler_scope.dart';
 import 'package:pokedex_app/app/core/services/api/response/http_response.dart';
@@ -37,6 +38,17 @@ class ApiServiceImpl extends ApiService {
     return apiServiceExceptionHandlerScope(
       () async {
         final response = await apiConfig.dio.get(endpoint);
+        return HttpResponse(
+            statusCode: response.statusCode, data: response.data);
+      },
+    );
+  }
+
+  @override
+  Future<HttpResponse> getDataWithFullUrl(String ur) {
+    return apiServiceExceptionHandlerScope(
+      () async {
+        final response = await Dio().get(ur);
         return HttpResponse(
             statusCode: response.statusCode, data: response.data);
       },

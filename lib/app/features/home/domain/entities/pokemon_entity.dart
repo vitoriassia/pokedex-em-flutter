@@ -5,13 +5,11 @@ import 'package:pokedex_app/app/features/home/domain/entities/pokemon_type_entit
 
 class PokemonEntity extends Equatable {
   final String name;
-  final String number;
   final int id;
   final List<PokemonTypeEntity> types;
   final List<PokemonAbilityEntity> abilities;
   const PokemonEntity({
     required this.name,
-    required this.number,
     required this.id,
     required this.types,
     required this.abilities,
@@ -19,9 +17,14 @@ class PokemonEntity extends Equatable {
 
   Color get color => types.first.color;
 
+  String get number => id < 10
+      ? '#00$id'
+      : id < 100
+          ? '#0$id'
+          : '$id';
+
   @override
   List<Object> get props => [
         name,
-        number,
       ];
 }

@@ -4,4 +4,5 @@ abstract class ApiService {
   Future<HttpResponse> postDataTo(String endpoint, data);
   Future<HttpResponse> putDataTo(String endpoint, data);
   Future<HttpResponse> getDataFrom(String endpoint);
+  Future<HttpResponse> getDataWithFullUrl(String ur);
 }
