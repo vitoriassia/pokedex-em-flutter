@@ -4,6 +4,7 @@ import 'package:pokedex_app/app/core/services/api/api_service_impl.dart';
 import 'package:pokedex_app/app/features/home/data/home_remote_data_source_impl.dart';
 import 'package:pokedex_app/app/features/home/data/home_repository_impl.dart';
 import 'package:pokedex_app/app/features/home/domain/useCases/get_list_assets_use_case.dart';
+import 'package:pokedex_app/app/features/home/presentation/controllers/home_controller.dart';
 
 class HomeBinds implements Bindings {
   @override
@@ -26,5 +27,10 @@ class HomeBinds implements Bindings {
       ),
     );
     // ================ CONTROLLER =============== //
+    Get.put<HomeController>(
+      HomeController(
+        BindsHelper.get<GetListPokemonsUseCase>(),
+      ),
+    );
   }
 }

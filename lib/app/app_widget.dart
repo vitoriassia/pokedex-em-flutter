@@ -4,7 +4,7 @@ import 'package:pokedex_app/app/core/binds/app_binds.dart';
 import 'package:pokedex_app/app/core/l10n/l10n.dart';
 import 'package:pokedex_app/app/core/router/routes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:pokedex_app/app/features/home/presentation/home_page.dart';
+import 'package:pokedex_app/app/core/router/routes_path.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,6 +14,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       title: 'Pokedex APP',
       initialBinding: AppBinds(),
+      initialRoute: RoutesPath.home,
       getPages: Routes.getPages,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -21,7 +22,6 @@ class App extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: L10n.all,
-      home: const HomePage(),
     );
   }
 }
