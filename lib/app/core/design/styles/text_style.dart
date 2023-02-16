@@ -22,7 +22,7 @@ abstract class PokedexTextStyle {
 
   static final bodyBold = _parent.copyWith(
     debugLabel: 'Body Bold',
-    fontSize: PokedexFontSize.regular,
+    fontSize: PokedexFontSize.small,
     fontWeight: FontWeight.bold,
   );
 

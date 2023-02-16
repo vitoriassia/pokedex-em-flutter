@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:pokedex_app/app/core/design/images/app_images.dart';
-import 'package:pokedex_app/app/core/design/res/app_colors.dart';
 import 'package:pokedex_app/app/core/design/res/dimen.dart';
+import 'package:pokedex_app/app/core/design/styles/text_style.dart';
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/pokemon_card/pokemon_image.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/pokemon_card/pokemon_type.dart';
@@ -95,11 +95,7 @@ class PokemonCard extends StatelessWidget {
       right: 14,
       child: Text(
         pokemon.number,
-        style: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
+        style: PokedexTextStyle.bodyBold.copyWith(color: Colors.white),
       ),
     );
   }
@@ -125,12 +121,8 @@ class _CardContent extends StatelessWidget {
                 tag: pokemon.number + pokemon.name,
                 child: Text(
                   pokemon.name,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    height: 0.7,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.whiteGrey,
-                  ),
+                  style: PokedexTextStyle.bodyBold
+                      .copyWith(color: Colors.white, height: 0.7),
                 ),
               ),
             ),
