@@ -83,7 +83,7 @@ class _PaginatedListViewWidgetState<T>
           child: Visibility(
             visible: widget.isLoading,
             child: const CenteredProgressIndicator(
-              color: AppColors.red,
+              color: AppColors.redPokedexColor,
             ),
           ),
         ),

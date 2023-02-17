@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pokedex_app/app/core/binds/binds_helper.dart';
 import 'package:pokedex_app/app/core/shared/presentation/ui_state.dart';
+import 'package:pokedex_app/app/features/custom_pokemons/custom_pokemons.dart';
 import 'package:pokedex_app/app/features/home/presentation/controllers/home_controller.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/home_scaffold.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/list_pokemons.dart';
@@ -25,6 +26,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return HomeScaffold(
+      tabBar: const TabBar(
+        tabs: [
+          Tab(icon: Icon(Icons.directions_car)),
+          Tab(icon: Icon(Icons.directions_transit)),
+          Tab(icon: Icon(Icons.directions_bike)),
+        ],
+      ),
       body: GetX<HomeController>(
         init: _controller,
         builder: (controller) {
@@ -39,8 +47,13 @@ class _HomePageState extends State<HomePage> {
             );
           }
 
-          return ListPokemons(
-            homeController: _controller,
+          return TabBarView(
+            children: [
+              ListPokemons(
+                homeController: _controller,
+              ),
+              const CustomPokemons()
+            ],
           );
         },
       ),

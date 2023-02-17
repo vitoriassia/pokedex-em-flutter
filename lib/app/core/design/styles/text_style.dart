@@ -20,6 +20,12 @@ abstract class PokedexTextStyle {
     fontWeight: FontWeight.bold,
   );
 
+  static final headlineWhite3 = _parent.copyWith(
+      debugLabel: 'Headline 3',
+      fontSize: PokedexFontSize.regular,
+      fontWeight: FontWeight.bold,
+      color: Colors.white);
+
   static final bodyBold = _parent.copyWith(
     debugLabel: 'Body Bold',
     fontSize: PokedexFontSize.small,

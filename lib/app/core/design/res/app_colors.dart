@@ -30,4 +30,5 @@ abstract class AppColors {
   static const Color semiGrey = Color(0xFFbababa);
   static const Color violet = Color(0xD07038F8);
   static const Color textColor = Color(0xff5a5a5a);
+  static const Color redPokedexColor = Color(0xffd30a40);
 }
