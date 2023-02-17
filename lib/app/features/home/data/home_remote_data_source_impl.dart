@@ -12,10 +12,12 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   HomeRemoteDataSourceImpl(this._apiService);
 
   @override
-  Future<List<PokemonEntity>> getListPokemons() async {
+  Future<List<PokemonEntity>> getListPokemons(int page) async {
     return remoteDataSourceExceptionHandlerScope<List<PokemonEntity>>(
       () async {
-        final response = await _apiService.getDataFrom('/pokemon/?limit=20');
+        int offset = getOffsetByPage(page);
+        final response =
+            await _apiService.getDataFrom('/pokemon/?limit=20&offset=$offset.');
 
         final data = DataWrapperResponse.fromJson(
             response.data['results'], response.statusCode);
@@ -26,6 +28,11 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         return listWithFullInformation;
       },
     );
+  }
+
+  int getOffsetByPage(int page) {
+    if (page == 1) return 0;
+    return page * 20;
   }
 
   Future<List<PokemonEntity>> _getListPokemonsWithFullInformation(

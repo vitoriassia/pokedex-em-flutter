@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   final HomeController _controller = BindsHelper.get<HomeController>();
   @override
   void initState() {
-    _controller.loadingListPokemons();
+    _controller.loadingListPokemons(page: 1);
     super.initState();
   }
 
@@ -39,7 +39,9 @@ class _HomePageState extends State<HomePage> {
             );
           }
 
-          return ListPokemons(_controller.listPokemons);
+          return ListPokemons(
+            homeController: _controller,
+          );
         },
       ),
     );

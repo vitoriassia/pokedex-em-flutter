@@ -11,9 +11,9 @@ class HomeRepositoryImpl extends HomeRepository {
   HomeRepositoryImpl(this._remoteDataSource);
 
   @override
-  Future<Either<Failure, List<PokemonEntity>>> getListPokemons() async {
+  Future<Either<Failure, List<PokemonEntity>>> getListPokemons(int page) async {
     return repositoryExceptionHandlerScope<List<PokemonEntity>>(
-      () async => await _remoteDataSource.getListPokemons(),
+      () async => await _remoteDataSource.getListPokemons(page),
     );
   }
 }

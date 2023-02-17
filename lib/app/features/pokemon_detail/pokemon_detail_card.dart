@@ -48,9 +48,9 @@ class PokemonDetailCard extends StatelessWidget {
   Widget _buildShadow() {
     return Positioned(
       bottom: 10,
-      left: 185,
+      left: 170,
       child: Container(
-        height: 17,
+        height: 13,
         width: 130,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
