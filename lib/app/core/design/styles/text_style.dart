@@ -21,7 +21,7 @@ abstract class PokedexTextStyle {
   );
 
   static final headlineWhite3 = _parent.copyWith(
-      debugLabel: 'Headline 3',
+      debugLabel: 'Headline 3 White',
       fontSize: PokedexFontSize.regular,
       fontWeight: FontWeight.bold,
       color: Colors.white);
@@ -39,7 +39,14 @@ abstract class PokedexTextStyle {
     fontWeight: FontWeight.w700,
     height: 1.4,
   );
-
+  static final headlineWhite = _parent.copyWith(
+    debugLabel: 'Headline White',
+    fontFamily: 'Default-Pokedex-Font',
+    fontSize: PokedexFontSize.xxLarge,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+    height: 1.4,
+  );
   static final defaultButton = _parent.copyWith(
     debugLabel: 'Default button',
     fontFamily: 'Default-Pokedex-Font',

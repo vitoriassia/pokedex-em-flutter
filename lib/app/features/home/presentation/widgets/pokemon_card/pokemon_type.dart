@@ -13,9 +13,14 @@ class PokemonTypeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'assets/images/${type.name}.png',
-      width: width,
+    return HeroMode(
+      child: Hero(
+        tag: '${type.id}${type.name} ',
+        child: Image.asset(
+          'assets/images/${type.name}.png',
+          width: width,
+        ),
+      ),
     );
   }
 }

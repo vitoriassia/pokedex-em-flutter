@@ -17,16 +17,13 @@ class HomeScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Column(
             children: [
-              Text(
-                'Pokedex',
-                style: PokedexTextStyle.headline.copyWith(color: Colors.white),
-              ),
+              Text('Pokedex', style: PokedexTextStyle.headlineWhite),
             ],
           ),
           centerTitle: true,

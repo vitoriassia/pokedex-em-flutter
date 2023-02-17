@@ -1,6 +1,7 @@
 import 'package:get/instance_manager.dart';
 import 'package:pokedex_app/app/core/binds/binds_helper.dart';
 import 'package:pokedex_app/app/core/services/api/api_service_impl.dart';
+import 'package:pokedex_app/app/features/custom_pokemons/presentation/controllers/custom_pokemons_controller.dart';
 import 'package:pokedex_app/app/features/home/data/home_remote_data_source_impl.dart';
 import 'package:pokedex_app/app/features/home/data/home_repository_impl.dart';
 import 'package:pokedex_app/app/features/home/domain/useCases/get_list_assets_use_case.dart';
@@ -31,6 +32,9 @@ class HomeBinds implements Bindings {
       HomeController(
         BindsHelper.get<GetListPokemonsUseCase>(),
       ),
+    );
+    Get.put<CustomPokemonsController>(
+      CustomPokemonsController(),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pokedex_app/app/core/binds/binds_helper.dart';
 import 'package:pokedex_app/app/core/shared/presentation/ui_state.dart';
-import 'package:pokedex_app/app/features/custom_pokemons/custom_pokemons.dart';
+import 'package:pokedex_app/app/features/custom_pokemons/presentation/custom_pokemons.dart';
 import 'package:pokedex_app/app/features/home/presentation/controllers/home_controller.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/home_scaffold.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/list_pokemons.dart';
