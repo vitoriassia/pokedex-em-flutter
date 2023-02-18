@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pokedex_app/app/core/binds/binds_helper.dart';
 import 'package:pokedex_app/app/core/design/res/app_colors.dart';
@@ -52,6 +53,9 @@ class _AddCustomPokemonWidgetState extends State<AddCustomPokemonWidget> {
               child: TextFormFieldWithLabel(
                 label: 'Name:',
                 onChanged: _controller.setName,
+                listFormatters: [
+                  LengthLimitingTextInputFormatter(13),
+                ],
               ),
             ),
             Row(
