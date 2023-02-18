@@ -19,12 +19,15 @@ class CustomPokemonsController extends GetxController {
     _customPokemon.value = _customPokemon.value.copyWith(name: newName);
   }
 
+  void setImagePath(String? newPath) {
+    _customPokemon.value = _customPokemon.value.copyWith(imagePath: newPath);
+  }
+
   void getPokemonPhoto() async {
     final FileCreator fileCreator = await FileCreator.init();
     final resultImage = await fileCreator.createFromGallery();
     if (resultImage != null) {
-      _customPokemon.value =
-          _customPokemon.value.copyWith(imagePath: resultImage.path);
+      setImagePath(resultImage.path);
     }
   }
 
