@@ -23,6 +23,12 @@ Future<Either<Failure, T>> repositoryExceptionHandlerScope<T>(
         message: e.message,
       ),
     );
+  } on DataBaseException catch (e) {
+    return Left(
+      DataBaseFailure(
+        e.message,
+      ),
+    );
   }
 }
 
@@ -47,6 +53,19 @@ Future<T> remoteDataSourceExceptionHandlerScope<T>(Function function) async {
         message: e.error?.toString(),
       );
     }
+  }
+}
+
+Future<T> localDataSourceExceptionHandlerScope<T>(Function function) async {
+  try {
+    return await function();
+  } catch (e) {
+    developer.log(
+      e.toString(),
+      name: 'DATABASE ERROR:',
+    );
+    throw const DataBaseException(
+        message: 'Não foi possivel executar essa ação no banco de dados ');
   }
 }
 

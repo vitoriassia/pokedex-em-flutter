@@ -41,4 +41,15 @@ class HttpResponseException extends Equatable implements Exception {
   List<Object?> get props => [statusCode, data, error];
 }
 
+class DataBaseException extends Equatable implements Exception {
+  final String? message;
+
+  const DataBaseException({
+    required this.message,
+  });
+
+  @override
+  List<Object?> get props => [message];
+}
+
 class UnauthenticatedException implements Exception {}

@@ -14,3 +14,11 @@ class ServerFailure extends Equatable implements Failure {
   @override
   List<Object?> get props => [message, errorResponse];
 }
+
+class DataBaseFailure extends Equatable implements Failure {
+  final String? message;
+  const DataBaseFailure(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}

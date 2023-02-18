@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/app/core/storage/custom_pokemon/adapters/custom_pokemon/custom_pokemon_box.dart';
+import 'package:pokedex_app/app/core/storage/custom_pokemon/adapters/pokemon_type/pokemon_type_box.dart';
 
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_type_entity.dart';
 
@@ -44,4 +46,15 @@ class CustomPokemonEntity extends Equatable {
       types: types ?? this.types,
     );
   }
+
+  CustomPokemonBox toBox() => CustomPokemonBox(
+        id: id,
+        name: name,
+        imagePath: imagePath,
+        types: List<PokemonTypeBox>.from(
+          types.map(
+            (t) => t.toBox(),
+          ),
+        ),
+      );
 }

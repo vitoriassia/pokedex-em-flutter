@@ -5,6 +5,7 @@ import 'package:pokedex_app/app/core/binds/binds_helper.dart';
 import 'package:pokedex_app/app/core/design/res/app_colors.dart';
 import 'package:pokedex_app/app/core/design/res/dimen.dart';
 import 'package:pokedex_app/app/core/design/styles/text_style.dart';
+import 'package:pokedex_app/app/core/shared/presentation/ui_state.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/presentation/controllers/custom_pokemons_controller.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/presentation/widgets/add_custom_pokemon/widgets/card_button.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/presentation/widgets/add_custom_pokemon/widgets/preview_custom_pokemon.dart';
@@ -24,9 +25,33 @@ class _AddCustomPokemonWidgetState extends State<AddCustomPokemonWidget> {
   final CustomPokemonsController _controller =
       BindsHelper.get<CustomPokemonsController>();
 
+  late Worker _ever;
+
   @override
   void initState() {
+    _ever = ever(_controller.uiState, _listenUiState);
     super.initState();
+  }
+
+  void _listenUiState(UiState value) {
+    if (value is Success<void>) {
+      Get.back();
+    }
+
+    if (value is ErrorState) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(value.message),
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _ever.dispose();
+    _controller.disposeForm();
+    super.dispose();
   }
 
   @override
@@ -97,9 +122,14 @@ class _AddCustomPokemonWidgetState extends State<AddCustomPokemonWidget> {
             ),
             Padding(
               padding: const EdgeInsets.all(PokedexDimen.medium),
-              child: StadiumButton(
-                onPressed: () {},
-                label: 'Save',
+              child: Obx(
+                () => StadiumButton(
+                  isLoading: _controller.uiState.value is Loading,
+                  onPressed: () {
+                    _controller.registerCustomPokemon();
+                  },
+                  label: 'Save',
+                ),
               ),
             ),
           ],

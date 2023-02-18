@@ -7,5 +7,5 @@ class PokemonTypeModel extends PokemonTypeEntity {
   });
 
   factory PokemonTypeModel.fromJson(Map<String, dynamic> json) =>
-      PokemonTypeModel(name: json['name'], id: null);
+      PokemonTypeModel(name: json['name'], id: 0);
 }
