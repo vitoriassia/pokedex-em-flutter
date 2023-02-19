@@ -4,4 +4,6 @@ abstract class CustomPokemonsLocalDataSource {
   Future<void> registerCustomPokemon(CustomPokemonEntity customPokemonEntity);
 
   List<CustomPokemonEntity> getListCustomPokemons();
+
+  Future<void> deleteCustomPokemon(int pokemonId);
 }

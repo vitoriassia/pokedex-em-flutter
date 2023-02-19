@@ -7,4 +7,6 @@ abstract class CustomPokemonsRepository {
       CustomPokemonEntity customPokemonEntity);
 
   List<CustomPokemonEntity> getListCustomPokemons();
+
+  Future<Either<Failure, void>> deleteCustomPokemon(int pokemonId);
 }

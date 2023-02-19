@@ -3,6 +3,7 @@ import 'package:pokedex_app/app/core/shared/presentation/message_to_failure_conv
 import 'package:pokedex_app/app/core/shared/presentation/ui_state.dart';
 import 'package:pokedex_app/app/core/utils/file_creator.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/domain/entities/custom_pokemon_entity.dart';
+import 'package:pokedex_app/app/features/custom_pokemons/domain/useCases/delete_custom_pokemon_use_case.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/domain/useCases/get_list_custom_pokemons_use_case.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/domain/useCases/register_custom_pokemon_use_case.dart';
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_type_entity.dart';
@@ -11,15 +12,16 @@ class CustomPokemonsController extends GetxController {
   // --- USECASES --- //
   final RegisterCustomPokemonUseCase _registerCustomPokemonUseCase;
   final GetListCustomPokemonsUseCase _getListCustomPokemons;
+  final DeleteCustomPokemonUseCase _deleteCustomPokemonUseCase;
   CustomPokemonsController(
-      this._registerCustomPokemonUseCase, this._getListCustomPokemons);
+    this._registerCustomPokemonUseCase,
+    this._getListCustomPokemons,
+    this._deleteCustomPokemonUseCase,
+  );
 
-  // -- ATRIBUTES --- //
   Rx<CustomPokemonEntity> _customPokemon = const CustomPokemonEntity(
       id: 1, name: '', imagePath: null, types: [], abilities: []).obs;
   Rx<CustomPokemonEntity> get customPokemon => _customPokemon;
-
-  // -- ACTIONS --- //
 
   // ====================== ADD CUSTOM POKEMONS ====================== //
 
@@ -83,8 +85,6 @@ class CustomPokemonsController extends GetxController {
   }
 
   // ====================== LIST CUSTOM POKEMONS ====================== //
-  final Rx<UiState> _getListCustomPokemonsUiState = Rx<UiState>(Initial());
-  Rx<UiState> get getListCustomPokemonsUiState => _getListCustomPokemonsUiState;
 
   final RxList<CustomPokemonEntity> _listCustomPokemons =
       <CustomPokemonEntity>[].obs;
@@ -93,5 +93,24 @@ class CustomPokemonsController extends GetxController {
 
   void getListCustomPokemons() {
     _listCustomPokemons.value = _getListCustomPokemons();
+  }
+
+  final Rx<UiState> _deleteUiState = Rx<UiState>(Initial());
+  Rx<UiState> get deleteUiState => _deleteUiState;
+
+  Future<void> deleteCustomPokemon(int customPokemonId) async {
+    _deleteUiState.value = Loading();
+
+    final result = await _deleteCustomPokemonUseCase(DeletePokemonUseCaseParams(
+      pokemonId: customPokemonId,
+    ));
+
+    _deleteUiState.value = result.fold(
+      (failure) => ErrorState(
+        converter: FailureToMessageConverterFactory(failure)(),
+        failure: failure,
+      ),
+      (succes) => const Success(null),
+    );
   }
 }

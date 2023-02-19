@@ -31,22 +31,8 @@ class CustomPokemonWriter extends HiveBoxWriter<CustomPokemonBox> {
     await box.put(adapter.id, adapter);
   }
 
-  Future<void> deleteAllDDS() async {
-    await box.deleteAll([
-      _key,
-    ]);
-  }
-
-  Future<void> deleteListSyncsDDS(List<CustomPokemonBox> listDDSSyncs) async {
-    for (var i = 0; i < listDDSSyncs.length; i++) {
-      await box.delete(listDDSSyncs[i].id);
-    }
-  }
-
-  Future<void> deleteListNoSyncsDDS(List<CustomPokemonBox> listDDSSyncs) async {
-    for (var i = 0; i < listDDSSyncs.length; i++) {
-      await box.delete(listDDSSyncs[i].id);
-    }
+  Future<void> delete(int id) async {
+    await box.delete(id);
   }
 
   @override

@@ -28,8 +28,4 @@ class CustomPokemonReader extends HiveBoxReader<CustomPokemonBox> {
             _key,
           );
   }
-
-  List<CustomPokemonBox> getListProduct() {
-    return getAll();
-  }
 }

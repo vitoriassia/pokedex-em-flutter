@@ -18,7 +18,13 @@ class CustomPokemonsRepositoryImpl extends CustomPokemonsRepository {
   }
 
   @override
-  List<CustomPokemonEntity> getListCustomPokemons() {
-    return _localDataSource.getListCustomPokemons();
+  List<CustomPokemonEntity> getListCustomPokemons() =>
+      _localDataSource.getListCustomPokemons();
+
+  @override
+  Future<Either<Failure, void>> deleteCustomPokemon(int pokemonId) {
+    return repositoryExceptionHandlerScope(() async {
+      await _localDataSource.deleteCustomPokemon(pokemonId);
+    });
   }
 }

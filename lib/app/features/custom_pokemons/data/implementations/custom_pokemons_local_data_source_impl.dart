@@ -28,4 +28,13 @@ class CustomPokemonsLocalDataSourceImpl
     return List<CustomPokemonEntity>.from(
         result.map((box) => CustomPokemonModel.fromBox(box)));
   }
+
+  @override
+  Future<void> deleteCustomPokemon(int pokemonId) {
+    return localDataSourceExceptionHandlerScope(
+      () async {
+        await _writer.delete(pokemonId);
+      },
+    );
+  }
 }

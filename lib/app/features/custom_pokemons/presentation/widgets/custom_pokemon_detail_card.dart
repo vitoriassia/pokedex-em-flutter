@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pokedex_app/app/core/binds/binds_helper.dart';
 import 'package:pokedex_app/app/core/design/res/app_colors.dart';
 import 'package:pokedex_app/app/core/design/res/dimen.dart';
+import 'package:pokedex_app/app/core/shared/presentation/ui_state.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/domain/entities/custom_pokemon_entity.dart';
+import 'package:pokedex_app/app/features/custom_pokemons/presentation/controllers/custom_pokemons_controller.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/presentation/widgets/add_custom_pokemon/add_custom_pokemon_widget.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/presentation/widgets/add_custom_pokemon/widgets/preview_custom_pokemon.dart';
 import 'package:pokedex_app/app/shared/presentation/app_dialog.dart';
@@ -18,6 +21,39 @@ class CustomPokemonDetail extends StatefulWidget {
 }
 
 class _CustomPokemonDetailState extends State<CustomPokemonDetail> {
+  final CustomPokemonsController _controller =
+      BindsHelper.get<CustomPokemonsController>();
+
+  late Worker _ever;
+
+  @override
+  void initState() {
+    _ever = ever(_controller.deleteUiState, _listenUiState);
+
+    super.initState();
+  }
+
+  void _listenUiState(UiState value) {
+    if (value is Success<void>) {
+      _controller.getListCustomPokemons();
+      Get.back();
+    }
+
+    if (value is ErrorState) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(value.message),
+        ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _ever.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final heightCard = MediaQuery.of(context).size.height * 0.60;
@@ -45,11 +81,16 @@ class _CustomPokemonDetailState extends State<CustomPokemonDetail> {
                   );
                 },
                 label: 'Edit Pokemon'),
-            StadiumButton(
-              onPressed: () {},
-              label: 'Delete Pokemon',
-              buttonColor: AppColors.textColor,
-            ),
+            Obx(
+              () => StadiumButton(
+                onPressed: () {
+                  _controller.deleteCustomPokemon(widget.pokemonEntity.id);
+                },
+                label: 'Delete Pokemon',
+                isLoading: _controller.deleteUiState.value is Loading,
+                buttonColor: AppColors.textColor,
+              ),
+            )
           ],
         ),
       ),
