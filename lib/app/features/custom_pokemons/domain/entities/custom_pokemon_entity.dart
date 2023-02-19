@@ -1,37 +1,24 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex_app/app/core/storage/custom_pokemon/adapters/custom_pokemon/custom_pokemon_box.dart';
 import 'package:pokedex_app/app/core/storage/custom_pokemon/adapters/pokemon_type/pokemon_type_box.dart';
-
+import 'package:pokedex_app/app/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_type_entity.dart';
 
-class CustomPokemonEntity extends Equatable {
-  final String? name;
+class CustomPokemonEntity extends PokemonEntity {
   final String? imagePath;
-  final int id;
-  final List<PokemonTypeEntity> types;
   const CustomPokemonEntity({
-    required this.name,
-    required this.id,
     required this.imagePath,
-    required this.types,
+    required super.id,
+    required super.types,
+    required super.name,
+    required super.abilities,
   });
 
+  @override
   Color get color => types.isNotEmpty ? types.first.color : Colors.grey;
 
-  String get number => id < 10
-      ? '#00$id'
-      : id < 100
-          ? '#0$id'
-          : '#$id';
-
   @override
-  List<Object?> get props => [
-        name,
-        imagePath,
-        id,
-        types,
-      ];
+  List<Object?> get props => [imagePath, id, types, name, abilities];
 
   CustomPokemonEntity copyWith({
     String? name,
@@ -44,6 +31,7 @@ class CustomPokemonEntity extends Equatable {
       imagePath: imagePath ?? this.imagePath,
       id: id ?? this.id,
       types: types ?? this.types,
+      abilities: const [],
     );
   }
 

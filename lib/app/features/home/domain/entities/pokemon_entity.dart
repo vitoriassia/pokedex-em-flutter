@@ -23,5 +23,5 @@ class PokemonEntity extends Equatable {
           ? '#0$id'
           : '#$id';
   @override
-  List<Object> get props => [name, id, types, abilities];
+  List<Object?> get props => [name, id, types, abilities];
 }

@@ -17,4 +17,11 @@ abstract class PokedexDecorations {
     ),
     hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
   );
+
+  static const gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    childAspectRatio: 1.4,
+    crossAxisSpacing: 10,
+    mainAxisSpacing: 10,
+  );
 }

@@ -96,16 +96,14 @@ class PreviewPokemonCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Visibility(
-                visible: pokemonEntity.name != null &&
-                    pokemonEntity.name!.isNotEmpty,
+                visible: pokemonEntity.name.isNotEmpty,
                 child: Text(
-                  pokemonEntity.name ?? '',
+                  pokemonEntity.name,
                   style: PokedexTextStyle.headline,
                 ),
               ),
               Visibility(
-                visible:
-                    pokemonEntity.name == null || pokemonEntity.name!.isEmpty,
+                visible: pokemonEntity.name.isEmpty,
                 child: Container(
                   padding: const EdgeInsets.all(PokedexDimen.xxSmall),
                   decoration: BoxDecoration(

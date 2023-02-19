@@ -9,7 +9,7 @@ class CustomPokemonBox {
   int id;
 
   @HiveField(1)
-  String? name;
+  String name;
 
   @HiveField(2)
   String? imagePath;

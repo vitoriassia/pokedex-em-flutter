@@ -8,11 +8,17 @@ import 'package:pokedex_app/app/features/custom_pokemons/domain/repositories/cus
 class CustomPokemonsRepositoryImpl extends CustomPokemonsRepository {
   final CustomPokemonsLocalDataSource _localDataSource;
   CustomPokemonsRepositoryImpl(this._localDataSource);
+
   @override
   Future<Either<Failure, void>> registerCustomPokemon(
       CustomPokemonEntity customPokemonEntity) {
     return repositoryExceptionHandlerScope(() async {
       await _localDataSource.registerCustomPokemon(customPokemonEntity);
     });
+  }
+
+  @override
+  List<CustomPokemonEntity> getListCustomPokemons() {
+    return _localDataSource.getListCustomPokemons();
   }
 }

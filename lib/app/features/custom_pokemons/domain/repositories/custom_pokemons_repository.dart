@@ -5,4 +5,6 @@ import 'package:pokedex_app/app/features/custom_pokemons/domain/entities/custom_
 abstract class CustomPokemonsRepository {
   Future<Either<Failure, void>> registerCustomPokemon(
       CustomPokemonEntity customPokemonEntity);
+
+  List<CustomPokemonEntity> getListCustomPokemons();
 }

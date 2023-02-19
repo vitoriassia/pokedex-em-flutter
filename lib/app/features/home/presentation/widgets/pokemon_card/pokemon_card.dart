@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex_app/app/core/design/images/app_images.dart';
 import 'package:pokedex_app/app/core/design/res/dimen.dart';
 import 'package:pokedex_app/app/core/design/styles/text_style.dart';
+import 'package:pokedex_app/app/features/custom_pokemons/presentation/widgets/add_custom_pokemon/widgets/custom_pokemon_image.dart';
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_entity.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/pokemon_card/pokemon_image.dart';
 import 'package:pokedex_app/app/features/home/presentation/widgets/pokemon_card/pokemon_type.dart';
@@ -11,13 +12,12 @@ class PokemonCard extends StatelessWidget {
   static const double _pokeballFraction = 0.75;
 
   final PokemonEntity pokemon;
+  final bool isCustomPokemon;
+  final String? imagePath;
   final void Function()? onPress;
 
-  const PokemonCard(
-    this.pokemon, {
-    super.key,
-    this.onPress,
-  });
+  const PokemonCard(this.pokemon,
+      {super.key, this.onPress, this.isCustomPokemon = false, this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -76,16 +76,23 @@ class PokemonCard extends StatelessWidget {
     );
   }
 
-  Widget _buildPokemon({required double height}) {
+  Widget _buildPokemon({
+    required double height,
+  }) {
     final pokemonSize = height * PokedexDimen.pokemonFraction;
 
     return Positioned(
       bottom: -2,
       right: 2,
-      child: PokemonImage(
-        size: Size.square(pokemonSize),
-        pokemon: pokemon,
-      ),
+      child: isCustomPokemon
+          ? CustomPokemonImage(
+              size: Size.square(pokemonSize),
+              imagePath: imagePath,
+            )
+          : PokemonImage(
+              size: Size.square(pokemonSize),
+              pokemon: pokemon,
+            ),
     );
   }
 

@@ -3,21 +3,32 @@ import 'package:pokedex_app/app/core/shared/presentation/message_to_failure_conv
 import 'package:pokedex_app/app/core/shared/presentation/ui_state.dart';
 import 'package:pokedex_app/app/core/utils/file_creator.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/domain/entities/custom_pokemon_entity.dart';
+import 'package:pokedex_app/app/features/custom_pokemons/domain/useCases/get_list_custom_pokemons_use_case.dart';
 import 'package:pokedex_app/app/features/custom_pokemons/domain/useCases/register_custom_pokemon_use_case.dart';
 import 'package:pokedex_app/app/features/home/domain/entities/pokemon_type_entity.dart';
 
 class CustomPokemonsController extends GetxController {
   // --- USECASES --- //
   final RegisterCustomPokemonUseCase _registerCustomPokemonUseCase;
-  CustomPokemonsController(this._registerCustomPokemonUseCase);
+  final GetListCustomPokemonsUseCase _getListCustomPokemons;
+  CustomPokemonsController(
+      this._registerCustomPokemonUseCase, this._getListCustomPokemons);
 
   // -- ATRIBUTES --- //
-  Rx<CustomPokemonEntity> _customPokemon =
-      const CustomPokemonEntity(id: 0, name: null, imagePath: null, types: [])
-          .obs;
+  Rx<CustomPokemonEntity> _customPokemon = const CustomPokemonEntity(
+      id: 1, name: '', imagePath: null, types: [], abilities: []).obs;
   Rx<CustomPokemonEntity> get customPokemon => _customPokemon;
 
   // -- ACTIONS --- //
+
+  // ====================== ADD CUSTOM POKEMONS ====================== //
+
+  void setCurrentId() {
+    if (listCustomPokemons.isNotEmpty) {
+      _customPokemon.value =
+          _customPokemon.value.copyWith(id: listCustomPokemons.length + 1);
+    }
+  }
 
   void setName(String newName) {
     _customPokemon.value = _customPokemon.value.copyWith(name: newName);
@@ -63,8 +74,20 @@ class CustomPokemonsController extends GetxController {
 
   void disposeForm() {
     _uiState.value = Initial();
-    _customPokemon =
-        const CustomPokemonEntity(id: 0, name: null, imagePath: null, types: [])
-            .obs;
+    _customPokemon = const CustomPokemonEntity(
+        id: 0, name: '', imagePath: null, types: [], abilities: []).obs;
+  }
+
+  // ====================== LIST CUSTOM POKEMONS ====================== //
+  final Rx<UiState> _getListCustomPokemonsUiState = Rx<UiState>(Initial());
+  Rx<UiState> get getListCustomPokemonsUiState => _getListCustomPokemonsUiState;
+
+  final RxList<CustomPokemonEntity> _listCustomPokemons =
+      <CustomPokemonEntity>[].obs;
+
+  List<CustomPokemonEntity> get listCustomPokemons => _listCustomPokemons;
+
+  void getListCustomPokemons() {
+    _listCustomPokemons.value = _getListCustomPokemons();
   }
 }

@@ -18,7 +18,7 @@ class CustomPokemonBoxAdapter extends TypeAdapter<CustomPokemonBox> {
     };
     return CustomPokemonBox(
       id: fields[0] as int,
-      name: fields[1] as String?,
+      name: fields[1] as String,
       imagePath: fields[2] as String?,
       types: (fields[3] as List).cast<PokemonTypeBox>(),
     );

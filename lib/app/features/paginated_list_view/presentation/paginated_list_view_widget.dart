@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/app/core/design/decorations/input_decorations.dart';
 import 'package:pokedex_app/app/core/design/res/app_colors.dart';
 import 'package:pokedex_app/app/core/design/res/dimen.dart';
 import 'package:pokedex_app/app/core/shared/presentation/ui_state.dart';
@@ -64,12 +65,7 @@ class _PaginatedListViewWidgetState<T>
         SliverPadding(
           padding: const EdgeInsets.all(PokedexDimen.large),
           sliver: SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.4,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
+            gridDelegate: PokedexDecorations.gridDelegate,
             delegate: SliverChildBuilderDelegate(
               (_, index) {
                 return widget.builder(pagination.currentList[index]);

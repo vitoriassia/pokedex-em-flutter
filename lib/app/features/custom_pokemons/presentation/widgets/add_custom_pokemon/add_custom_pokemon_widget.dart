@@ -15,7 +15,9 @@ import 'package:pokedex_app/app/shared/presentation/stadium_button.dart';
 import 'package:pokedex_app/app/shared/presentation/text_form_field_with_label.dart';
 
 class AddCustomPokemonWidget extends StatefulWidget {
-  const AddCustomPokemonWidget({Key? key}) : super(key: key);
+  const AddCustomPokemonWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AddCustomPokemonWidget> createState() => _AddCustomPokemonWidgetState();
@@ -29,12 +31,14 @@ class _AddCustomPokemonWidgetState extends State<AddCustomPokemonWidget> {
 
   @override
   void initState() {
+    _controller.setCurrentId();
     _ever = ever(_controller.uiState, _listenUiState);
     super.initState();
   }
 
   void _listenUiState(UiState value) {
     if (value is Success<void>) {
+      _controller.getListCustomPokemons();
       Get.back();
     }
 
@@ -51,6 +55,7 @@ class _AddCustomPokemonWidgetState extends State<AddCustomPokemonWidget> {
   void dispose() {
     _ever.dispose();
     _controller.disposeForm();
+
     super.dispose();
   }
 
