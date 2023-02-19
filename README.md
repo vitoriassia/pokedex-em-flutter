@@ -13,7 +13,7 @@
 
 ![Pokedex FAB](screenshots/custom-pokemons-add.png "Pokedex FAB")
 ![Pokedex](screenshots/custom-pokemons.png "Pokedex")
-![Pokedex FAB](screenshots/detail-custom_pokemon.png "Pokedex FAB")
+![Pokedex FAB](screenshots/detail-custom-pokemon.png "Pokedex FAB")
 
 # Arquitetura / Bibliotecas :
 
