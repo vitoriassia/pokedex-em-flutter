@@ -1,6 +1,6 @@
 # Pokedex APP
 
- Pokedex feita com Flutter :)
+ Pokedex feita com Flutter :) -> <a href="https://github.com/vitoriassia/pokedex-em-flutter/">Link Repositório.</a>
 
 
 # Features
