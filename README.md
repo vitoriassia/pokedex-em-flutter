@@ -1,6 +1,6 @@
 # Pokedex APP
 
- Um Pokedex feita com Flutter :)
+ Pokedex feita com Flutter :)
 
 
 # Features
@@ -34,7 +34,7 @@
 ## Como rodar?
 ### Modo 1 - EASY
 
-Instalar este <a href="https://github.com/vitoriassia/variacao-do-ativo/blob/master/assets/app/app.apk">APK</a>  em seu celular android.
+Instalar este <a href="https://github.com/vitoriassia/pokedex-em-flutter/blob/master/assets/app/app.apk">APK</a>  em seu celular android.
 
 ### Modo 2 - HARD rsrs 
  1-> Instalar o <a href="https://flutter.dev/docs/get-started/install">Flutter</a> na sua máquina.
