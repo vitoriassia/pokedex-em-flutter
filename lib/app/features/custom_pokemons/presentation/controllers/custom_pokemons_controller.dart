@@ -23,6 +23,10 @@ class CustomPokemonsController extends GetxController {
 
   // ====================== ADD CUSTOM POKEMONS ====================== //
 
+  void setCustomPokemon(CustomPokemonEntity newCustomPokenmon) {
+    _customPokemon.value = newCustomPokenmon;
+  }
+
   void setCurrentId() {
     if (listCustomPokemons.isNotEmpty) {
       _customPokemon.value =

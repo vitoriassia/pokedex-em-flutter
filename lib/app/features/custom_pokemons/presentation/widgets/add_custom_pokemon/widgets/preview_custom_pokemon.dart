@@ -8,14 +8,18 @@ import 'package:pokedex_app/app/shared/presentation/app_dialog/semi_background.d
 
 class PreviewPokemonCard extends StatelessWidget {
   final CustomPokemonEntity pokemonEntity;
-  const PreviewPokemonCard({Key? key, required this.pokemonEntity})
+  final double padding;
+  const PreviewPokemonCard(
+      {Key? key,
+      required this.pokemonEntity,
+      this.padding = PokedexDimen.medium})
       : super(key: key);
 
   final double heightCard = 220;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(PokedexDimen.medium),
+      padding: EdgeInsets.all(padding),
       child: Card(
         elevation: 5,
         child: SizedBox(
