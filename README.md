@@ -1,6 +1,35 @@
 # Pokedex APP
 
-Aplicativo para ver as variações do Ativo PETR4.
+ Um Pokedex feita com Flutter :)
+
+
+# Features
+## Vizualização de todos os Pokemons com Infite Scroll:
+
+![Home](screenshots/home.png "Home")
+![Home](screenshots/detail-pokemon.png "Home")
+
+## Criação / Edição do seu próprio Pokemon:
+
+![Pokedex FAB](screenshots/custom-pokemons-add.png "Pokedex FAB")
+![Pokedex](screenshots/custom-pokemons.png "Pokedex")
+![Pokedex FAB](screenshots/detail-custom_pokemon.png "Pokedex FAB")
+
+# Arquitetura / Bibliotecas :
+
+   - Banco de Dados -> Hive.
+
+   - Clean Architecture com gerenciamento de estado com GetX.
+
+   - Navegação e rotas -> GetX (Router Manager).
+
+   - Modularização + Injeção de Dependencias -> GetX 
+
+
+# Links para as inspirações do design:
+
+   - <a href="https://dribbble.com/shots/6540871-Pokedex-App">Tela Inicial</a>
+   - <a href="https://www.behance.net/gallery/137682969/Pokedex-Ui-Model?tracking_source=search_projects%7CPokedex">Tela Custom Pokemons / Pokemons Details </a>
 
 ## Como rodar?
 ### Modo 1 - EASY
@@ -25,11 +54,4 @@ foo@terminal:~$ flutter run -t 'lib/main.prod.dart' --release
 
 ```
 
-
-## OBSERVACOES SOBRE O TESTE:
-
- -> Ao buscar o ativo, vocês solicitaram que pegasse nos ultimos 30 dias a variação do ativo.
-    mas no array timestamp convertendo em DateTime com dart ou através do  <a href="https://www.epochconverter.com/">Site de conversão</a> 
-    verifiquei que a diferença entre o ultimo array e o primeiro é de 7 horas. Então não consegui identificar uma maneira de pegar os
-    30 dias, mantendo dentro do APP os 30 primeiros itens do array.
     
